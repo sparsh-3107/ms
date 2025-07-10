@@ -318,10 +318,23 @@ function nextSlide() {
     current++;
     sections[current].classList.add('active');
     flipSound.play();
-  }
 
-  
+    if (current === sections.length - 1) {
+    setTimeout(() => {
+      document.querySelector('.reveal-btn').classList.add('show');
+    }, 4000);
+    
     }
+  }
+}
+
+function prevSlide() {
+  if (current > 0) {
+    sections[current].classList.remove('active');
+    current--;
+    sections[current].classList.add('active');
+    flipSound.play();
+    document.querySelector('.reveal-btn').classList.remove('show');
   }
 }
 
