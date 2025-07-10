@@ -299,8 +299,14 @@ function nextSlide() {
 
     if (current === sections.length - 1) {
     setTimeout(() => {
-  const revealBtn = document.getElementById('revealBtn');
-  if (revealBtn) revealBtn.classList.add('show');
+  const revealBtn = const revealBtn = document.getElementById('revealBtn');
+  if (revealBtn) {
+    revealBtn.classList.add('show');
+    revealBtn.addEventListener('click', () => {
+      document.querySelector('.popup').classList.add('show');
+      triggerConfetti();
+    }, { once: true });
+  }
 }, 4000);
     
     }
@@ -383,4 +389,3 @@ window.addEventListener('click', () => {
 </script>
 </body>
 </html>
-
