@@ -319,6 +319,20 @@ function nextSlide() {
     sections[current].classList.add('active');
     flipSound.play();
   }
+
+  const revealBtn = document.getElementById('revealBtn');
+  if (revealBtn && current === sections.length - 1) {
+    setTimeout(() => {
+      revealBtn.classList.add('show');
+      revealBtn.onclick = () => {
+        document.querySelector('.popup').classList.add('show');
+        triggerConfetti();
+      };
+    }, 4000);
+  } else if (revealBtn) {
+    revealBtn.classList.remove('show');
+  }
+}
   const revealBtn = document.getElementById('revealBtn');
   if (revealBtn && current === sections.length - 1) {
     setTimeout(() => revealBtn.classList.add('show'), 4000);
@@ -425,4 +439,3 @@ window.addEventListener('click', () => {
 </script>
 </body>
 </html>
-
