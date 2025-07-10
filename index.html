@@ -1,116 +1,384 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-
-const slides = [
-  {
-    id: 1,
-    content: "Hii my love ❤️",
-    bg: "bg-gradient-to-br from-pink-200 to-pink-500",
-  },
-  {
-    id: 2,
-    content: "You are the reason behind my smile 😊",
-    bg: "bg-gradient-to-br from-yellow-100 to-yellow-300",
-  },
-  {
-    id: 3,
-    content: "My everything, my whole universe 🌍",
-    bg: "bg-gradient-to-br from-blue-100 to-blue-300",
-  },
-  {
-    id: 4,
-    content: "I miss you so much 😢",
-    bg: "bg-gradient-to-br from-purple-200 to-purple-400",
-  },
-  {
-    id: 5,
-    content: "You make my world brighter 💫",
-    bg: "bg-gradient-to-br from-green-100 to-green-300",
-  },
-  {
-    id: 6,
-    content: "Please tap to reveal the final message ❤️",
-    bg: "bg-gradient-to-br from-red-100 to-red-400",
-  },
-];
-
-export default function LoveSlides() {
-  const [current, setCurrent] = useState(0);
-  const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    if (current === slides.length - 1) {
-      const timer = setTimeout(() => setShowPopup(true), 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [current]);
-
-  return (
-    <div className={`w-full h-screen flex items-center justify-center ${slides[current].bg} transition-all duration-1000 relative overflow-hidden`}>
-      {/* Sparkle Particles */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="animate-pulse opacity-30 w-full h-full bg-[url('/sparkle.svg')] bg-cover bg-repeat"></div>
-      </div>
-
-      {/* Slide Content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={slides[current].id}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.8 }}
-          className="text-center p-4 z-10"
-        >
-          <h1 className="text-4xl font-bold text-white drop-shadow-md">
-            {slides[current].content}
-          </h1>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Next Button */}
-      {current < slides.length - 1 && (
-        <Button
-          onClick={() => setCurrent((prev) => prev + 1)}
-          className="absolute bottom-10 animate-pulse z-10 bg-white text-rose-500 hover:bg-rose-100 border border-rose-300 rounded-full px-6 py-2 font-bold shadow-lg"
-        >
-          Next ➡️
-        </Button>
-      )}
-
-      {/* Final Love Letter Popup */}
-      {showPopup && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, type: "spring" }}
-          className="absolute inset-0 bg-white/90 flex items-center justify-center z-50 backdrop-blur-md"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="bg-white p-8 rounded-3xl shadow-2xl text-center relative border-4 border-rose-300"
-          >
-            <h2 className="text-4xl font-bold mb-4 text-rose-600 animate-pulse">
-              💌 My Love Letter 💌
-            </h2>
-            <p className="text-lg text-gray-800 max-w-md">
-              My dearest love,
-              <br />
-              You are the light that guides me, the strength that carries me. I cherish every moment with you and long for the day we can create many more memories. 💖
-            </p>
-            <div className="absolute -top-5 -right-5">
-              <motion.div
-                className="w-10 h-10 rounded-full bg-pink-400 shadow-lg animate-ping"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              ></motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </div>
-  );
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday maya ❤️🧿🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Gloria+Hallelujah&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: background 1s ease, color 1s ease;
 }
+    body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #fff8f0, #ffe4e1);
+  color: #222;
+  position: relative;
+  transition: background 1s ease, color 1s ease;
+      color: #222;
+      position: relative;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin: 1.5rem auto 1rem;
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+      color: #ffb6c1;
+      animation: flicker 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; text-shadow: 0 0 25px #ff80ab; }
+      100% { opacity: 1; }
+    }
+    .slider {
+      display: flex;
+      flex-direction: column;
+    }
+    .section {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      transition: all 0.8s ease;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      position: relative;
+      background: rgba(255, 240, 245, 0.6);
+      backdrop-filter: blur(12px);
+      box-shadow: inset 0 0 40px #ffb6c1aa;
+      animation: pageTurn 1s ease;
+      transition: all 0.8s ease;
+    }
+    .section.active {
+      display: flex;
+    }
+    @keyframes pageTurn {
+      from { transform: rotateY(-90deg); opacity: 0; }
+      to { transform: rotateY(0deg); opacity: 1; }
+    }
+    .fade-text {
+      font-size: 1.3em;
+      font-family: 'Gloria Hallelujah', cursive;
+      text-align: center;
+      max-width: 90%;
+      line-height: 1.8em;
+      color: #6b2c2c;
+      animation: fadeInUp 2s ease forwards;
+      opacity: 0;
+    }
+    .section.active .fade-text {
+      opacity: 1;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .hearts, .sparkles, .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart, .sparkle, .star {
+      position: absolute;
+      animation: float 6s linear infinite;
+      font-size: 1.5rem;
+      opacity: 0.7;
+    }
+    .sparkle { color: #fff59d; }
+    .star { color: #aaddff; }
+    @keyframes float {
+      from { transform: translateY(100vh); opacity: 1; }
+      to { transform: translateY(-10vh); opacity: 0; }
+    }
+    .reveal-btn {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+  background: #ff80ab;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.8rem;
+  color: #6b2c2c;
+  font-family: 'Great Vibes', cursive;
+  cursor: pointer;
+  z-index: 25;
+  box-shadow: 0 0 12px #ff80ab;
+  transition: all 0.5s ease;
+}
+.reveal-btn.show {
+  display: block;
+}
+    .popup {
+  animation: glowIn 1.5s ease-out;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      color: white;
+      max-width: 90vw;
+      z-index: 999;
+      display: none;
+      font-family: 'Great Vibes', cursive;
+      box-shadow: 0 0 30px #ff80ab;
+      backdrop-filter: blur(15px);
+    }
+    .popup.show { display: block; animation: fadeInUp 1s ease; }
+    .popup button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #ff80ab;
+      border: none;
+      color: white;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+    }
+    .next-btn {
+      position: fixed;
+      bottom: 2rem;
+      left: 1rem;
+      background: #80deea;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 0.8rem;
+      color: #0f0f0f;
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 25;
+      box-shadow: 0 0 12px #00bcd4;
+    }
+    audio { display: none; }
+    @media (max-width: 768px) {
+      h1 { font-size: 2em; }
+      .fade-text { font-size: 1.05em; padding: 0 1rem; }
+      .popup { padding: 1.2rem; font-size: 1em; }
+      .section { padding: 1.5rem; }
+    }
+  @keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes glowIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    box-shadow: 0 0 0px #ff80ab;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 1;
+    box-shadow: 0 0 20px #ff80ab;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    box-shadow: 0 0 40px #ff80ab, 0 0 60px #ffb6c1;
+  }
+}
+.popup-sparkles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+.popup-sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  color: #fff59d;
+  opacity: 0.8;
+  animation: sparkleFloat 3s linear infinite;
+}
+@keyframes sparkleFloat {
+  from { transform: translateY(100%); opacity: 1; }
+  to { transform: translateY(-10%) rotate(360deg); opacity: 0; }
+}
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #ff80ab;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  z-index: 1001;
+}
+.dark-mode body {
+  background: linear-gradient(to right, #1a1a2e, #0f0f1b);
+  color: #fff;
+  transition: background 1s ease, color 1s ease;
+}
+.dark-mode .section {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 40px #ff80ab33;
+}
+.dark-mode .fade-text {
+  color: #ffe4e1;
+}
+.dark-mode .popup {
+  background: rgba(20, 20, 30, 0.95);
+  color: #fff;
+}
+.dark-mode .reveal-btn {
+  background: #ff4081;
+}
+.dark-mode .next-btn {
+  background: #00acc1;
+  color: white;
+}
+.dark-mode .theme-toggle {
+  background: #333;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/06/audio_f2119a6a1c.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="flipSound">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/30/audio_e2bd84659d.mp3" type="audio/mpeg">
+  </audio>
+  <h1>Happy Birthday maya 🎉</h1>
+  <div class="slider" id="slider">
+    <div class="section active"><div class="fade-text">🎂 On this special day, the universe pauses to celebrate you. Your existence adds meaning to mine, like stars lighting up the darkest sky. 💫</div></div>
+    <div class="section"><div class="fade-text">🌌 You're not just beautiful on the outside, but breathtaking within. Today, we celebrate all that you are. 💖</div></div>
+    <div class="section"><div class="fade-text">🌠 My world began spinning in color the day you walked into it. You’re not a part of my life — you are my life. 🥺</div></div>
+    <div class="section"><div class="fade-text">🎶 Your laughter is the rhythm I live for. If I could, I’d write your name on every heartbeat. ❤️</div></div>
+    <div class="section"><div class="fade-text">🦋 You are grace wrapped in stardust. I fall for you every single day. 🌷</div></div>
+    <div class="section">
+      <div class="fade-text">With all my heart and soul, forever yours,<br><strong>sparsh</strong> 💌</div>
+      <button class="reveal-btn" style="font-size: 2rem; padding: 1.5rem 3rem; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ff80ab; color: white; border: none; border-radius: 1rem; font-family: 'Great Vibes', cursive; box-shadow: 0 0 20px #ff80ab; z-index: 999; display: none; transition: all 0.5s ease; animation: heartbeat 2s infinite;" onclick="document.querySelector('.popup').classList.add('show')">💌 Reveal Love Letter 💌</button>
+    </div>
+  </div>
+  <div class="popup">
+  <div class="popup-sparkles" id="popupSparkles"></div>
+    <p>Dear maya,<br><br>Your love is the light in my world. I am endlessly thankful for your presence. Every second with you is magic, and I promise to love you beyond limits. 💖<br><br>Love,<br>sparsh 💌</p>
+    <button onclick="document.querySelector('.popup').classList.remove('show')">Close</button>
+  </div>
+  <button class="next-btn" onclick="prevSlide()">⬅️ Prev</button>
+  <button class="next-btn" style="left: auto; right: 1rem;" onclick="nextSlide()">Next ➡️</button>
+  <div class="hearts" id="hearts"></div>
+  <div class="sparkles" id="sparkles"></div>
+  <div class="stars" id="stars"></div>
+  <script>
+const sections = document.querySelectorAll('.section');
+const flipSound = document.getElementById('flipSound');
+let current = 0;
+
+function nextSlide() {
+  if (current < sections.length - 1) {
+    sections[current].classList.remove('active');
+    current++;
+    sections[current].classList.add('active');
+    flipSound.play();
+
+    if (current === sections.length - 1) {
+    setTimeout(() => {
+      document.querySelector('.reveal-btn').classList.add('show');
+    }, 4000);
+    
+    }
+  }
+}
+
+function prevSlide() {
+  if (current > 0) {
+    sections[current].classList.remove('active');
+    current--;
+    sections[current].classList.add('active');
+    flipSound.play();
+    document.querySelector('.reveal-btn').classList.remove('show');
+  }
+}
+
+function createFloaty(type, symbol, target) {
+  const el = document.createElement('div');
+  el.className = type;
+  el.textContent = symbol;
+  el.style.left = Math.random() * 100 + 'vw';
+  el.style.fontSize = 1 + Math.random() * 2 + 'rem';
+  el.style.animationDuration = 3 + Math.random() * 3 + 's';
+  document.getElementById(target).appendChild(el);
+  setTimeout(() => el.remove(), 6000);
+}
+
+setInterval(() => createFloaty('heart', '💗', 'hearts'), 400);
+setInterval(() => createFloaty('sparkle', '🌸', 'sparkles'), 600);
+setInterval(() => createFloaty('star', '🌼', 'stars'), 1000);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+function triggerConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+}
+function createPopupSparkle() {
+  const sparkle = document.createElement('div');
+  sparkle.className = 'popup-sparkle';
+  sparkle.textContent = '✨';
+  sparkle.style.left = Math.random() * 100 + '%';
+  sparkle.style.top = Math.random() * 100 + '%';
+  sparkle.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+  sparkle.style.animationDuration = (2 + Math.random() * 2) + 's';
+  document.getElementById('popupSparkles').appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 3000);
+}
+
+const popupObserver = new MutationObserver((mutations) => {
+  mutations.forEach(mutation => {
+    if (mutation.type === 'attributes' && mutation.target.classList.contains('show')) {
+      const sparkleInterval = setInterval(createPopupSparkle, 300);
+      setTimeout(() => clearInterval(sparkleInterval), 3000);
+    }
+  });
+});
+
+popupObserver.observe(document.querySelector('.popup'), { attributes: true });
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark-mode');
+}
+window.addEventListener('click', () => {
+  const bgAudio = document.querySelector('audio[autoplay]');
+  if (bgAudio) bgAudio.play().catch(e => console.log('Audio blocked:', e));
+}, { once: true });
+</script>
+</body>
+</html>
