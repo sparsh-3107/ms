@@ -271,9 +271,9 @@
     <div class="section"><div class="fade-text">🎶 Your laughter is the rhythm I live for. If I could, I’d write your name on every heartbeat. ❤️</div></div>
     <div class="section"><div class="fade-text">🦋 You are grace wrapped in stardust. I fall for you every single day. 🌷</div></div>
     <div class="section">
-      <div class="fade-text">With all my heart and soul, forever yours,<br><strong>sparsh</strong> 💌</div>
-      <button class="reveal-btn" style="font-size: 2rem; padding: 1.5rem 3rem; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ff80ab; color: white; border: none; border-radius: 1rem; font-family: 'Great Vibes', cursive; box-shadow: 0 0 20px #ff80ab; z-index: 999; display: none; transition: all 0.5s ease; animation: heartbeat 2s infinite;" onclick="document.querySelector('.popup').classList.add('show')">💌 Reveal Love Letter 💌</button>
-    </div>
+  <div class="fade-text">With all my heart and soul, forever yours,<br><strong>sparsh</strong> 💌</div>
+  <button class="reveal-btn" id="revealBtn">💌 Reveal Love Letter 💌</button>
+</div>
   </div>
   <div class="popup">
   <div class="popup-sparkles" id="popupSparkles"></div>
@@ -299,8 +299,9 @@ function nextSlide() {
 
     if (current === sections.length - 1) {
     setTimeout(() => {
-      document.querySelector('.reveal-btn').classList.add('show');
-    }, 4000);
+  const revealBtn = document.getElementById('revealBtn');
+  if (revealBtn) revealBtn.classList.add('show');
+}, 4000);
     
     }
   }
@@ -382,3 +383,4 @@ window.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
