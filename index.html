@@ -320,6 +320,11 @@ function nextSlide() {
     flipSound.play();
   }
 
+  
+    }
+  }
+}
+
   const revealBtn = document.getElementById('revealBtn');
   if (revealBtn && current === sections.length - 1) {
     setTimeout(() => {
@@ -340,15 +345,7 @@ function nextSlide() {
     revealBtn.classList.remove('show');
   }
 
-    if (current === sections.length - 1) {
-  setTimeout(() => {
-    const revealBtn = document.getElementById('revealBtn');
-    if (revealBtn) {
-      revealBtn.classList.add('show');
-      revealBtn.onclick = () => {
-        document.querySelector('.popup').classList.add('show');
-        triggerConfetti();
-      };
+    ;
     }
   }, 4000);
 }
@@ -439,3 +436,4 @@ window.addEventListener('click', () => {
 </script>
 </body>
 </html>
+
